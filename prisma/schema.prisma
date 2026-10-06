@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model answers {
+  id          Int        @id @default(autoincrement())
+  text        String?    @db.VarChar(200)
+  is_correct  Boolean?
+  question_id Int?
+  questions   questions? @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model categories {
+  id        Int         @id @default(autoincrement())
+  name      String?     @db.VarChar(100)
+  questions questions[]
+}
+
+model questions {
+  id          Int         @id @default(autoincrement())
+  text        String?     @db.VarChar(500)
+  category_id Int?
+  answers     answers[]
+  categories  categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
