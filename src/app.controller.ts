@@ -48,7 +48,7 @@ export class AppController {
     return this.appService.createAnswers(
       body.text,
       body.is_correct,
-      questionId,
+      Number(questionId),
     );
   }
 
