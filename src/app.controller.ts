@@ -40,7 +40,7 @@ export class AppController {
 
   @Post('questions/:categoryId')
   createQuestions(@Param('categoryId') categoryId: number, @Body() body: any) {
-    return this.appService.createQuestions(body.text, categoryId);
+    return this.appService.createQuestions(body.text, Number(categoryId));
   }
 
   @Post('answers/:questionId')
