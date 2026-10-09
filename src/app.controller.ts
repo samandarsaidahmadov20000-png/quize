@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -30,34 +38,32 @@ export class AppController {
     return this.appService.createCategory(body.name);
   }
 
-  // @Post('questions/:categoryId')
-  // createQuestions(@Param('categoryId') categoryId: string, @Body() body: any) {
-  //   return this.appService.createQuestions(body.text, categoryId);
-  // }
+  @Post('questions/:categoryId')
+  createQuestions(@Param('categoryId') categoryId: number, @Body() body: any) {
+    return this.appService.createQuestions(body.text, categoryId);
+  }
 
-  // @Post('answers/:questionId')
-  // createAnswers(@Param('questionId') questionId: string, @Body() body: any) {
-  //   return this.appService.createAnswers(
-  //     body.text,
-  //     body.is_correct,
-  //     questionId,
-  //   );
-  // }
-   
-  // @Post('answerscheck/:id')
-  // checkAnswer(@Param('id') id: string) {
-  //   return this.appService.checkAnswer(id)
-  // }
+  @Post('answers/:questionId')
+  createAnswers(@Param('questionId') questionId: number, @Body() body: any) {
+    return this.appService.createAnswers(
+      body.text,
+      body.is_correct,
+      questionId,
+    );
+  }
 
+  @Post('answerscheck/:id')
+  checkAnswer(@Param('id') id: number) {
+    return this.appService.checkAnswer(id);
+  }
 
-  // @Put("questions/:id")
-  // questionsUpdate(@Param('id') id: string, @Body() body: any) {
-  //   return this.appService.questionsUpdate(id, body.text)
-  // }
+  @Put('questions/:id')
+  questionsUpdate(@Param('id') id: number, @Body() body: any) {
+    return this.appService.questionsUpdate(id, body.text);
+  }
 
-  // @Delete("questions/:id")
-  // qusetionsDelete(@Param('id') id: string) {
-  //   return this.appService.qusetionsDelete(id)
-  // } 
-
+  @Delete('questions/:id')
+  qusetionsDelete(@Param('id') id: string) {
+    return this.appService.qusetionsDelete(id);
+  }
 }
